@@ -2,38 +2,46 @@
 
 namespace App;
 
-use Illuminate\Notifications\Notifiable;
-use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Illuminate\Foundation\Auth\User as Authenticatable;
-
-class User extends Authenticatable
+class User
 {
-    use Notifiable;
+    private $email = "";
+    private $firstName = "";
+    private $lastName = "";
+    private $age = 0;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
-    protected $fillable = [
-        'name', 'email', 'password',
-    ];
+    public function __construct(String $email, String $firstName, String $lastName, Int $age)
+    {
+        $this->email = $email;
+        $this->firstName = $firstName;
+        $this->lastName = $lastName;
+        $this->age = $age;
+    }
 
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
-    protected $hidden = [
-        'password', 'remember_token',
-    ];
+    public function hasEmail() {
+        return $this->email != "";
+    }
 
-    /**
-     * The attributes that should be cast to native types.
-     *
-     * @var array
-     */
-    protected $casts = [
-        'email_verified_at' => 'datetime',
-    ];
+    public function emailIsValid() {
+        return (!preg_match("/^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/ix", $this->email)) ? false : true;
+    }
+
+    public function hasFirstName() {
+        return $this->firstName != "";
+    }
+
+    public function hasLastName() {
+        return $this->lastName != "";
+    }
+
+    public function isOver13() {
+        return $this->age > 13;
+    }
+
+    public function isValid() {
+        return $this->hasEmail() && $this->emailIsValid() && $this->hasFirstName() && $this->hasLastName() && $this->isOver13();
+    }
+
+    public function setEmail(String $email) {
+        $this->email = $email;
+    }
 }

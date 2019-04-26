@@ -1,5 +1,7 @@
 <?php
 
+namespace App;
+
 class DBConnection
 {
 
@@ -24,5 +26,3 @@ class DBConnection
 	}
 
 }
-
-?>

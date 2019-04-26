@@ -1,6 +1,6 @@
 <?php
 
-namespace src\Exchange;
+namespace App;
 
 class Exchange {
 

@@ -1,5 +1,7 @@
 <?php
 
+namespace App;
+
 class EmailSender
 {
 
@@ -14,5 +16,3 @@ class EmailSender
 	}
 
 }
-
-?>
