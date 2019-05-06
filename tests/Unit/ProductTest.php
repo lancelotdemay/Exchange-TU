@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: lens
- * Date: 26/04/2019
- * Time: 15:23
- */
 
 namespace Tests\Unit;
 
@@ -19,23 +13,31 @@ class ProductTest extends TestCase
 
 
     /** @test */
-    public function productIsValid() {
+    public function testPproductIsValid() {
 
         $this->assertTrue($this->product->hasName());
         $this->assertTrue($this->product->isValid());
     }
 
     /** @test */
-    public function productHasNoName() {
+    public function testProductHasNoName() {
         $this->product->setName("");
 
-        $this->assertTrue($this->product->getUser()->isValid());
+        $this->assertTrue($this->product->getOwner()->isValid());
         $this->assertFalse($this->product->isValid());
     }
 
     /** @test */
-    public function productHasInvalidUser() {
+    public function testProductHasInvalidUser() {
        $this->user->setEmail("");
+
+        $this->assertFalse($this->product->isValid());
+    }
+
+    /** @test */
+    public function testProductHasInvalidUserAndNoName() {
+       $this->user->setEmail("");
+       $this->product->setName("");
 
         $this->assertFalse($this->product->isValid());
     }

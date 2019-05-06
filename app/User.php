@@ -44,4 +44,12 @@ class User
     public function setEmail(String $email) {
         $this->email = $email;
     }
+
+    public function setAge(Int $age) {
+        $this->age = $age;
+    }
+
+    public function isMajor(){
+        return $this->age >= 18;
+    }
 }

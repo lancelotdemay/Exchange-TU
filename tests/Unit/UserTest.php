@@ -8,7 +8,7 @@ use Tests\TestCase;
 class UserTest extends TestCase
 {
     /** @test */
-    function aUserIsValid() {
+    function testUserIsValid() {
 
         $user = new User("lancelotdemay@test.com", "Lancelot", "Demay", 23);
 
@@ -16,7 +16,7 @@ class UserTest extends TestCase
     }
 
     /** @test */
-    function aUserHasNoEmail() {
+    function testUserHasNoEmail() {
 
         $user = new User( "","Lancelot", "Demay", 23);
 
@@ -24,7 +24,7 @@ class UserTest extends TestCase
     }
 
     /** @test */
-    function aUserIsUnder13() {
+    function testUserIsUnder13() {
 
         $user = new User("jhondoe@test.com", "Jhon", "Doe", 11);
 
@@ -32,7 +32,7 @@ class UserTest extends TestCase
     }
 
     /** @test */
-    function aUserHasInvalidEmail() {
+    function testUserHasInvalidEmail() {
 
         $user = new User("oui.com", "Jhon", "Doe", 45);
 
@@ -40,7 +40,7 @@ class UserTest extends TestCase
     }
 
     /** @test */
-    function aUserHasNoFirstName() {
+    function testUserHasNoFirstName() {
 
         $user = new User("jhondoe@test.com", "", "Doe",20);
 
@@ -48,10 +48,11 @@ class UserTest extends TestCase
     }
 
     /** @test */
-    function aUserHasNoLastName() {
+    function testUserHasNoLastName() {
 
         $user = new User("jhondoe@test.com", "Jhon", "",20);
 
         $this->assertFalse($user->hasLastName());
     }
+
 }

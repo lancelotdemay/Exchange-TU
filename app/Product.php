@@ -26,11 +26,11 @@ class Product
         $this->name = $name;
     }
 
-    public function getowner() {
+    public function getOwner() {
         return $this->owner;
     }
 
-    public function setowner(User $owner) {
+    public function setOwner(User $owner) {
         $this->owner = $owner;
     }
 }

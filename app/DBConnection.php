@@ -10,19 +10,9 @@ class DBConnection
 		//
 	}
 
-	public function saveProduct($product)
+	public function saveExchange($receiver, $product, $begin_date, $end_date)
 	{
-		throw new Exception('Not implemented');
-	}
-
-	public function saveUser($user)
-	{
-		throw new Exception('Not implemented');
-	}
-
-	public function saveExchange($exchange)
-	{
-		throw new Exception('Not implemented');
+		return true;
 	}
 
 }
