@@ -21,6 +21,10 @@ class User
         return $this->email != "";
     }
 
+    public function getEmail() {
+        return $this->email;
+    }
+
     public function emailIsValid() {
         return (!preg_match("/^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/ix", $this->email)) ? false : true;
     }

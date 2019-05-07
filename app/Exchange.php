@@ -5,6 +5,7 @@ namespace App;
 use App\DBConnection;
 use App\EmailSender;
 use Carbon\Carbon;
+use Illuminate\Http\Response;
 
 class Exchange {
 
@@ -23,18 +24,18 @@ class Exchange {
 
     public function save(){
         
-        if( $this->receiver->isValid() && $this->product->isValid() && $this->verifyDateStart() && $this->verifyDate() ){
+        if($this->receiver->isValid() && $this->product->isValid() && $this->verifyDateStart() && $this->verifyDate()){
             
             $this->dbConnection->saveExchange($this->receiver, $this->product, $this->begin_date, $this->end_date);
             
             if( !$this->receiver->isMajor() ){
-                $this->emailSender->sendEmail($this->receiver->hasEmail(), 'Exchange Done');
+                $this->emailSender->sendEmail($this->receiver->getEmail(), 'Exchange Done');
             }
 
-            return true;
+            return response('Échange enregistré', Response::HTTP_CREATED);
             
         }else{
-            return false;
+            return response('Problème lors de l\'échange', Response::HTTP_BAD_REQUEST);
         }
     }
 

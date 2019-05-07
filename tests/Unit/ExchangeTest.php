@@ -5,6 +5,7 @@ namespace Tests\Unit;
 use App\Product;
 use App\User;
 use App\Exchange;
+use Illuminate\Http\Response;
 use Tests\TestCase;
 use Carbon\Carbon;
 
@@ -21,7 +22,7 @@ class ExchangeTest extends TestCase
         $this->assertTrue($this->product->getOwner()->isValid());
         $this->assertTrue($this->product->isValid());
         $this->assertTrue($this->receiver->isValid());
-        $this->assertTrue($this->exchange->save());
+        $this->assertEquals($this->exchange->save()->getStatusCode(), Response::HTTP_CREATED);
     }
     
     /** @test */
@@ -32,7 +33,7 @@ class ExchangeTest extends TestCase
         $this->assertTrue($this->product->getOwner()->isValid());
         $this->assertTrue($this->product->isValid());
         $this->assertTrue($this->receiver->isValid());
-        $this->assertFalse($this->exchange->save());
+        $this->assertEquals($this->exchange->save()->getStatusCode(), Response::HTTP_BAD_REQUEST);
     }
     
     /** @test */
@@ -43,7 +44,7 @@ class ExchangeTest extends TestCase
         $this->assertTrue($this->product->getOwner()->isValid());
         $this->assertTrue($this->product->isValid());
         $this->assertTrue($this->receiver->isValid());
-        $this->assertFalse($this->exchange->save());
+        $this->assertEquals($this->exchange->save()->getStatusCode(), Response::HTTP_BAD_REQUEST);
     }
     
     /** @test */
@@ -54,7 +55,7 @@ class ExchangeTest extends TestCase
         $this->assertFalse($this->product->getOwner()->isValid());
         $this->assertFalse($this->product->isValid());
         $this->assertTrue($this->receiver->isValid());
-        $this->assertFalse($this->exchange->save());
+        $this->assertEquals($this->exchange->save()->getStatusCode(), Response::HTTP_BAD_REQUEST);
     }
     
     /** @test */
@@ -65,7 +66,7 @@ class ExchangeTest extends TestCase
         $this->assertTrue($this->product->getOwner()->isValid());
         $this->assertTrue($this->product->isValid());
         $this->assertFalse($this->receiver->isValid());
-        $this->assertFalse($this->exchange->save());
+        $this->assertEquals($this->exchange->save()->getStatusCode(), Response::HTTP_BAD_REQUEST);
     }
     
     /** @test */
@@ -76,7 +77,7 @@ class ExchangeTest extends TestCase
         $this->assertTrue($this->product->getOwner()->isValid());
         $this->assertFalse($this->product->isValid());
         $this->assertTrue($this->receiver->isValid());
-        $this->assertFalse($this->exchange->save());
+        $this->assertEquals($this->exchange->save()->getStatusCode(), Response::HTTP_BAD_REQUEST);
     }
     
     /** @test */
@@ -88,7 +89,7 @@ class ExchangeTest extends TestCase
         $this->assertTrue($this->product->getOwner()->isValid());
         $this->assertFalse($this->product->isValid());
         $this->assertFalse($this->receiver->isValid());
-        $this->assertFalse($this->exchange->save());
+        $this->assertEquals($this->exchange->save()->getStatusCode(), Response::HTTP_BAD_REQUEST);
     }
     
     protected function setUp(): void
